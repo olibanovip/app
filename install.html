@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#1A3C34">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="theme-color" content="#354037">
     <title>Olíbano - Instalar Aplicativo</title>
     <link rel="manifest" href="/files/manifest.json">
     <link rel="icon" type="image/png" sizes="192x192" href="/files/icon-192.png">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --ouro: #D4AF37;
-            --verde-profundo: #1A3C34;
-            --bege-suave: #F8F1E9;
-            --branco-puro: #FFFFFF;
-            --cinza-suave: #4A4A4A;
+            --ouro: #C88715;
+            --terracota: #AC4315;
+            --oliva: #69683B;
+            --verde-escuro: #354037;
+            --branco: #FFFFFF;
+            --preto: #000000;
+            --bege-suave: #F5F2E9;
+            --terracota-claro: #D4946E;
         }
 
         * {
@@ -26,130 +29,113 @@
 
         body {
             font-family: 'Playfair Display', serif;
-            text-align: center;
             background-color: var(--bege-suave);
-            color: var(--verde-profundo);
+            color: var(--verde-escuro);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            line-height: 1.8;
+            line-height: 1.6;
         }
 
         .container {
-            max-width: 600px;
+            max-width: 500px;
             width: 100%;
-            background-color: var(--branco-puro);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 8px;
-            background: linear-gradient(to right, var(--ouro), var(--verde-profundo));
+            background-color: var(--branco);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            text-align: center;
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--ouro);
-            letter-spacing: 2px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            font-size: 2rem;
-            font-weight: 400;
-            margin-bottom: 25px;
-        }
-
-        p {
-            font-size: 1.3rem;
+            width: 120px;
             margin-bottom: 20px;
         }
 
-        .subtle-text {
-            font-style: italic;
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--ouro);
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--verde-escuro);
+            margin-bottom: 15px;
+        }
+
+        p {
             font-size: 1.1rem;
-            color: var(--cinza-suave);
-            margin-bottom: 30px;
+            color: var(--oliva);
+            margin-bottom: 20px;
         }
 
         #installButton {
             display: none;
-            background: linear-gradient(135deg, var(--ouro), #b8962e);
-            color: var(--branco-puro);
-            font-size: 1.4rem;
-            padding: 15px 50px;
+            background-color: var(--terracota);
+            color: var(--branco);
+            font-size: 1.2rem;
+            padding: 12px 30px;
             border: none;
-            border-radius: 50px;
+            border-radius: 25px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         #installButton:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+            background-color: var(--terracota-claro);
+            transform: translateY(-2px);
         }
 
         #installMessage {
-            margin-top: 20px;
-            font-size: 1.1rem;
-            color: var(--cinza-suave);
-            min-height: 50px;
-            padding: 10px;
+            margin-top: 15px;
+            font-size: 1rem;
+            color: var(--verde-escuro);
+            min-height: 40px;
         }
 
         .already-installed {
             display: none;
-            background-color: rgba(26, 60, 52, 0.05);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
+            background-color: rgba(69, 68, 59, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
         }
 
         .already-installed a {
-            color: var(--ouro);
+            color: var(--terracota);
             text-decoration: none;
             font-weight: 700;
-            transition: color 0.3s ease;
         }
 
         .already-installed a:hover {
-            color: var(--verde-profundo);
+            color: var(--ouro);
         }
 
         .footer {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: var(--cinza-suave);
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: var(--preto);
+            opacity: 0.6;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="logo">Olíbano</h1>
+        <img src="/files/icon-192.png" alt="Logo Olíbano" class="logo">
+        <h1>Olíbano</h1>
         <h2>Instale nosso aplicativo</h2>
-        <p>Descubra uma experiência única e premium.</p>
-        <p class="subtle-text">Disponível diretamente na sua tela inicial com um simples toque.</p>
+        <p>Uma experiência premium ao seu alcance.</p>
         <button id="installButton">Instalar Agora</button>
         <div id="installMessage"></div>
         <div class="already-installed" id="alreadyInstalledMessage">
             <p>O aplicativo já está instalado.</p>
-            <p>Encontre-o na sua tela inicial ou gaveta de apps.</p>
+            <p>Encontre-o na sua tela inicial.</p>
             <a href="#" id="openAppLink">Abrir Olíbano</a>
         </div>
     </div>
@@ -168,9 +154,11 @@
         const alreadyInstalledMessage = document.getElementById("alreadyInstalledMessage");
         const openAppLink = document.getElementById("openAppLink");
 
+        // Verifica se o app já está instalado
         if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
             alreadyInstalledMessage.style.display = "block";
-        } else {
+        } else if ('beforeinstallprompt' in window) {
+            // Só mostra o botão se o evento for suportado
             window.addEventListener('beforeinstallprompt', (event) => {
                 event.preventDefault();
                 deferredPrompt = event;
@@ -184,7 +172,7 @@
                 deferredPrompt.userChoice.then((choiceResult) => {
                     installButton.style.display = "none";
                     if (choiceResult.outcome === 'accepted') {
-                        installMessage.textContent = "Instalação em andamento... Veja sua tela inicial em breve!";
+                        installMessage.textContent = "Instalação iniciada! Verifique sua tela inicial.";
                     } else {
                         installMessage.textContent = "Instale quando desejar!";
                     }
