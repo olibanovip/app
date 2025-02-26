@@ -3,188 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#1A3C34">
     <title>Olíbano - Instalar Aplicativo</title>
     <link rel="manifest" href="/files/manifest.json">
     <link rel="icon" type="image/png" sizes="192x192" href="/files/icon-192.png">
-    <!-- Importação das fontes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        @font-face {
-            font-family: 'Calliga';
-            src: url('https://cdn.jsdelivr.net/gh/olibanovip/files@main/calliga.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
-        
         :root {
-            --ouro: #C88715;
-            --terracota: #AC4315;
-            --oliva: #69683B;
-            --verde-escuro: #354037;
-            --bege-claro: #F5F2E9;
-            --branco: #FFFFFF;
+            --ouro: #D4AF37;
+            --verde-profundo: #1A3C34;
+            --bege-suave: #F8F1E9;
+            --branco-puro: #FFFFFF;
+            --cinza-suave: #4A4A4A;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Playfair Display', serif;
             text-align: center;
-            background-color: var(--bege-claro);
-            color: var(--verde-escuro);
+            background-color: var(--bege-suave);
+            color: var(--verde-profundo);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            line-height: 1.6;
+            line-height: 1.8;
         }
-        
+
         .container {
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
-            background-color: var(--branco);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            background-color: var(--branco-puro);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
         }
-        
+
         .container::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 6px;
-            background: linear-gradient(to right, var(--ouro), var(--terracota));
+            height: 8px;
+            background: linear-gradient(to right, var(--ouro), var(--verde-profundo));
         }
-        
+
         .logo {
-            font-family: 'Calliga', serif;
-            font-size: 3.5rem;
-            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
             color: var(--ouro);
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         }
-        
+
         h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: var(--verde-escuro);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 25px;
         }
-        
+
         p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 20px;
-            font-weight: 500;
         }
-        
+
         .subtle-text {
             font-style: italic;
-            font-size: 1rem;
-            color: var(--oliva);
+            font-size: 1.1rem;
+            color: var(--cinza-suave);
             margin-bottom: 30px;
         }
-        
+
         #installButton {
             display: none;
-            background: linear-gradient(135deg, var(--ouro), var(--terracota));
-            color: white;
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            font-size: 1.3rem;
-            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--ouro), #b8962e);
+            color: var(--branco-puro);
+            font-size: 1.4rem;
+            padding: 15px 50px;
             border: none;
-            border-radius: 30px;
+            border-radius: 50px;
             cursor: pointer;
-            margin: 25px 0;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(172, 67, 21, 0.25);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
         }
-        
+
         #installButton:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(172, 67, 21, 0.35);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
         }
-        
-        #installButton:active {
-            transform: translateY(1px);
-        }
-        
+
         #installMessage {
-            margin-top: 25px;
-            font-style: italic;
+            margin-top: 20px;
             font-size: 1.1rem;
-            color: var(--oliva);
-            min-height: 60px;
+            color: var(--cinza-suave);
+            min-height: 50px;
             padding: 10px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
         }
-        
+
         .already-installed {
-            background-color: rgba(105, 104, 59, 0.1);
-            padding: 20px !important;
+            display: none;
+            background-color: rgba(26, 60, 52, 0.05);
+            padding: 20px;
             border-radius: 10px;
             margin-top: 20px;
-            display: none;
         }
-        
+
         .already-installed a {
-            display: inline-block;
-            margin-top: 10px;
-            color: var(--terracota);
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 1px solid var(--terracota);
-            padding-bottom: 2px;
-            transition: all 0.2s ease;
-        }
-        
-        .already-installed a:hover {
             color: var(--ouro);
-            border-bottom-color: var(--ouro);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s ease;
         }
-        
+
+        .already-installed a:hover {
+            color: var(--verde-profundo);
+        }
+
         .footer {
-            margin-top: 30px;
+            margin-top: 40px;
             font-size: 0.9rem;
-            color: var(--oliva);
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 25px 15px;
-            }
-            
-            .logo {
-                font-size: 3rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            p {
-                font-size: 1.1rem;
-            }
-            
-            #installButton {
-                font-size: 1.2rem;
-                padding: 14px 30px;
-            }
+            color: var(--cinza-suave);
         }
     </style>
 </head>
@@ -192,100 +143,61 @@
     <div class="container">
         <h1 class="logo">Olíbano</h1>
         <h2>Instale nosso aplicativo</h2>
-        <p>Uma experiência exclusiva ao alcance de suas mãos.</p>
-        <p class="subtle-text">Acesse nosso app com apenas um toque, diretamente da tela inicial do seu dispositivo.</p>
-        
-        <button id="installButton">Instalar Aplicativo</button>
-        
+        <p>Descubra uma experiência única e premium.</p>
+        <p class="subtle-text">Disponível diretamente na sua tela inicial com um simples toque.</p>
+        <button id="installButton">Instalar Agora</button>
         <div id="installMessage"></div>
-        
         <div class="already-installed" id="alreadyInstalledMessage">
-            <p>Você já tem nosso aplicativo instalado em seu dispositivo.</p>
-            <p>Para acessá-lo, verifique a tela inicial ou a gaveta de aplicativos do seu dispositivo.</p>
-            <a href="#" id="openAppLink">Abrir Aplicativo</a>
+            <p>O aplicativo já está instalado.</p>
+            <p>Encontre-o na sua tela inicial ou gaveta de apps.</p>
+            <a href="#" id="openAppLink">Abrir Olíbano</a>
         </div>
     </div>
-    
-    <div class="footer">
-        © 2025 Olíbano. Todos os direitos reservados.
-    </div>
-    
+    <div class="footer">© 2025 Olíbano. Todos os direitos reservados.</div>
+
     <script>
-        // Registra o service worker se não estiver registrado
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/files/service-worker.js', {scope: '/files/'})
-                .then(reg => {
-                    console.log('Service Worker registrado com sucesso!', reg);
-                    
-                    // Força a ativação do service worker
-                    if (reg.waiting) {
-                        reg.waiting.postMessage('FORCE_ACTIVATE');
-                    }
-                })
-                .catch(err => console.error('Erro no registro do Service Worker:', err));
+            navigator.serviceWorker.register('/files/service-worker.js', { scope: '/files/' })
+                .then(reg => console.log('Service Worker registrado:', reg))
+                .catch(err => console.error('Erro ao registrar Service Worker:', err.message));
         }
-        
-        // Captura o evento beforeinstallprompt para mostrar o botão de instalação
+
         let deferredPrompt;
         const installButton = document.getElementById("installButton");
         const installMessage = document.getElementById("installMessage");
         const alreadyInstalledMessage = document.getElementById("alreadyInstalledMessage");
         const openAppLink = document.getElementById("openAppLink");
-        
-        // Verifica se o app já está instalado
-        if (window.matchMedia('(display-mode: standalone)').matches || 
-            window.navigator.standalone === true) {
-            // O app já está instalado
+
+        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
             alreadyInstalledMessage.style.display = "block";
         } else {
-            // Escuta o evento de instalação
             window.addEventListener('beforeinstallprompt', (event) => {
-                // Previne que o navegador mostre automaticamente o prompt
                 event.preventDefault();
-                
-                // Armazena o evento para usar depois
                 deferredPrompt = event;
-                
-                // Mostra o botão de instalação
                 installButton.style.display = "inline-block";
             });
         }
-        
-        // Adiciona evento de clique ao botão de instalar
+
         installButton.addEventListener("click", () => {
             if (deferredPrompt) {
-                // Mostra o prompt de instalação
                 deferredPrompt.prompt();
-                
-                // Espera pela escolha do usuário
                 deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        installMessage.textContent = "Instalação iniciada! O aplicativo estará disponível em instantes na sua tela inicial.";
-                        installMessage.style.backgroundColor = "rgba(200, 135, 21, 0.1)";
-                    } else {
-                        installMessage.textContent = "Você pode instalar o aplicativo mais tarde quando estiver pronto.";
-                    }
-                    
-                    // Limpa a referência pois só pode ser usada uma vez
-                    deferredPrompt = null;
-                    
-                    // Esconde o botão após a escolha
                     installButton.style.display = "none";
+                    if (choiceResult.outcome === 'accepted') {
+                        installMessage.textContent = "Instalação em andamento... Veja sua tela inicial em breve!";
+                    } else {
+                        installMessage.textContent = "Instale quando desejar!";
+                    }
+                    deferredPrompt = null;
                 });
             }
         });
-        
-        // Detecta quando o app foi instalado
-        window.addEventListener('appinstalled', (event) => {
-            installMessage.textContent = "Aplicativo instalado com sucesso! Você pode acessá-lo pela tela inicial do seu dispositivo.";
-            installMessage.style.backgroundColor = "rgba(53, 64, 55, 0.1)";
-            installButton.style.display = "none";
-            setTimeout(() => {
-                alreadyInstalledMessage.style.display = "block";
-            }, 3000);
+
+        window.addEventListener('appinstalled', () => {
+            installMessage.textContent = "Instalado com sucesso! Acesse pela tela inicial.";
+            setTimeout(() => alreadyInstalledMessage.style.display = "block", 2000);
         });
-        
-        // Abre o app quando o link "Abrir Aplicativo" for clicado
+
         openAppLink.addEventListener('click', (e) => {
             e.preventDefault();
             window.location.href = "https://olibano.glide.page";
