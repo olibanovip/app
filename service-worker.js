@@ -9,6 +9,7 @@ const urlsToCache = [
 ];
 
 self.addEventListener('install', event => {
+    console.log('Service Worker instalando...');
     event.waitUntil(
         caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
     );
@@ -16,6 +17,7 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
+    console.log('Fetch interceptado:', event.request.url);
     event.respondWith(
         caches.match(event.request)
             .then(response => response || fetch(event.request))
@@ -24,5 +26,6 @@ self.addEventListener('fetch', event => {
 });
 
 self.addEventListener('activate', event => {
+    console.log('Service Worker ativando...');
     event.waitUntil(self.clients.claim());
 });
