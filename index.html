@@ -7,128 +7,22 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#354037">
+    <meta http-equiv="refresh" content="0; url=http://airgo.bio/olibano">
     <title>Olíbano</title>
     <link rel="manifest" href="/files/manifest.json">
     <link rel="icon" type="image/png" sizes="192x192" href="/files/icon-192.png">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --ouro: #C88715;
-            --terracota: #AC4315;
-            --oliva: #69683B;
-            --verde-escuro: #354037;
-            --branco: #FFFFFF;
-            --bege-suave: #F5F2E9;
-        }
-
-        body {
-            font-family: 'Playfair Display', serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bege-suave);
-            color: var(--verde-escuro);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-
-        .container {
-            padding: 20px;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .logo {
-            width: 100px;
-            margin-bottom: 15px;
-        }
-
-        h1 {
-            font-size: 2rem;
-            color: var(--ouro);
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .buttons-main {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px;
-            background-color: var(--ouro);
-            color: var(--branco);
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-        }
-
-        .button.secondary {
-            background-color: var(--bege-suave);
-            color: var(--verde-escuro);
-            border: 1px solid var(--ouro);
-        }
-
-        .buttons-bottom {
-            display: flex;
-            justify-content: space-around;
-            margin: 20px 0;
-        }
-
-        .icon-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--ouro);
-        }
-
-        .footer {
-            font-size: 0.8rem;
-            color: var(--oliva);
-            padding: 10px;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <img src="/files/icon-192.png" alt="Logo Olíbano" class="logo">
-        <h1>Olíbano</h1>
-        <p>Bem-vindos!<br>Olíbano é uma empresa focada em autocuidado, relaxamento e bem-estar. Oferecemos um espaço onde sua saúde física e mental são tratadas de forma integrada, cuidando de você como um todo.</p>
-
-        <div class="buttons-main">
-            <a href="https://www.instagram.com/olibanovip" class="button">📷 Instagram</a>
-            <a href="https://wa.me/5551993622621" class="button">💬 Whatsapp</a>
-            <a href="http://bit.ly/forms-olibano" class="button secondary">🔍 Anamnese Digital</a>
-            <a href="/files/install.html" class="button secondary">⬇️ Instalar App</a>
-        </div>
-
-        <div class="buttons-bottom">
-            <button class="icon-button" onclick="window.location.href='tel:+5551993622621';">📞</button>
-            <button class="icon-button" onclick="window.location.href='sms:+5551993622621';">💬</button>
-            <button class="icon-button" onclick="window.location.href='mailto:contato@olibano.vip';">📧</button>
-            <button class="icon-button" onclick="window.location.href='https://waze.com/ul/h6fet4drsc';">📍</button>
-        </div>
-
-        <div class="footer">
-            © 2025 Olíbano. Todos os direitos reservados.<br>
-            Olíbano® - Práticas Integrativas Complementares em Saúde.<br>
-            Rua Gomes Jardim, 201 - Sala 1017 - Santana<br>
-            Medplex - Torre Norte | Porto Alegre / RS
-        </div>
+    <div style="display: none;">
+        <img src="/files/icon-192.png" alt="Logo Olíbano" style="width: 120px;">
+        <h1 style="color: #C88715; font-family: sans-serif;">Olíbano</h1>
+        <p style="color: #354037; font-family: sans-serif;">Redirecionando para o aplicativo...</p>
     </div>
+    <noscript>
+        <p style="color: #354037; font-family: sans-serif;">Por favor, habilite o JavaScript ou <a href="http://airgo.bio/olibano">clique aqui</a> para acessar o Olíbano.</p>
+    </noscript>
+    <script>
+        window.location.href = "http://airgo.bio/olibano";
+    </script>
 </body>
 </html>
