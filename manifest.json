@@ -2,10 +2,11 @@
   "short_name": "Olíbano",
   "name": "Olíbano",
   "description": "Este é o App da empresa Olíbano, aproveite!",
-  "start_url": "/files/index.html",
+  "start_url": "https://olibano.glide.page",
+  "scope": "/",
   "display": "fullscreen",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
+  "theme_color": "#1A3C34",
+  "background_color": "#F8F1E9",
   "icons": [
     {
       "src": "/files/icon-192.png",
@@ -32,17 +33,15 @@
       "purpose": "maskable"
     }
   ],
-  "scope": "/files/",
   "lang": "pt-BR",
   "orientation": "portrait",
   "display_override": [
     "fullscreen",
-    "window-controls-overlay",
     "standalone"
   ],
   "categories": [
     "health",
     "lifestyle"
   ],
-  "dir": "auto"
+  "prefer_related_applications": false
 }
