@@ -1,9 +1,9 @@
 const CACHE_NAME = 'olibano-v1';
 const urlsToCache = [
     '/',
-    '/index.html',
-    '/manifest.json',
-    '/icons/icon-192.png'
+    '/files/index.html',
+    '/files/manifest.json',
+    '/files/icon-192.png'
 ];
 
 self.addEventListener('install', event => {
