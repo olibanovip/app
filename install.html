@@ -16,7 +16,6 @@
             --oliva: #69683B;
             --verde-escuro: #354037;
             --branco: #FFFFFF;
-            --preto: #000000;
             --bege-suave: #F5F2E9;
             --terracota-claro: #D4946E;
         }
@@ -143,7 +142,7 @@
 
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/files/service-worker.js', { scope: '/files/' })
+            navigator.serviceWorker.register('/files/service-worker.js', { scope: '/' })
                 .then(reg => {
                     console.log('Service Worker registrado com sucesso:', reg);
                 })
@@ -191,7 +190,7 @@
 
         openAppLink.addEventListener('click', (e) => {
             e.preventDefault();
-            window.location.href = "https://olibano.glide.page";
+            window.location.href = "http://airgo.bio/olibano";
         });
     </script>
 </body>
