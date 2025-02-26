@@ -144,7 +144,9 @@
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/files/service-worker.js', { scope: '/files/' })
-                .then(reg => console.log('Service Worker registrado:', reg))
+                .then(reg => {
+                    console.log('Service Worker registrado com sucesso:', reg);
+                })
                 .catch(err => console.error('Erro ao registrar Service Worker:', err.message));
         }
 
@@ -157,9 +159,10 @@
         // Verifica se o app já está instalado
         if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
             alreadyInstalledMessage.style.display = "block";
-        } else if ('beforeinstallprompt' in window) {
-            // Só mostra o botão se o evento for suportado
+        } else {
+            // Só ativa o listener se o evento for suportado
             window.addEventListener('beforeinstallprompt', (event) => {
+                console.log('Evento beforeinstallprompt disparado');
                 event.preventDefault();
                 deferredPrompt = event;
                 installButton.style.display = "inline-block";
