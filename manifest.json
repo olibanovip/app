@@ -1,9 +1,9 @@
 {
   "short_name": "Olíbano",
-  "name": "Olíbano VIP",
+  "name": "Olíbano",
   "description": "Este é o App da empresa Olíbano, aproveite!",
   "start_url": "/files/index.html",
-  "display": "standalone",
+  "display": "fullscreen",
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "icons": [
@@ -36,9 +36,9 @@
   "lang": "pt-BR",
   "orientation": "portrait",
   "display_override": [
+    "fullscreen",
     "window-controls-overlay",
-    "standalone",
-    "browser"
+    "standalone"
   ],
   "categories": [
     "health",
