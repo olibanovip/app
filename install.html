@@ -55,7 +55,7 @@
         }
 
         h1 {
-            font-size: 2.2rem;
+            font-size: 2.8rem; /* Aumentado para maior destaque */
             font-weight: 700;
             color: var(--ouro);
             margin-bottom: 10px;
@@ -122,6 +122,12 @@
             color: var(--preto);
             opacity: 0.6;
         }
+
+        .install-instruction {
+            font-size: 0.9rem; /* Estilo de rodapé para a instrução */
+            color: var(--oliva);
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -137,12 +143,13 @@
             <p>Encontre-o na sua tela inicial.</p>
             <a href="#" id="openAppLink">Abrir Olíbano</a>
         </div>
+        <div class="install-instruction">Clique em 'Instalar Agora' para adicionar o Olíbano à sua tela inicial.</div>
     </div>
     <div class="footer">© 2025 Olíbano. Todos os direitos reservados.</div>
 
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/files/service-worker.js', { scope: '/' })
+            navigator.serviceWorker.register('/files/service-worker.js', { scope: '/files/' }) // Ajustado para '/files/'
                 .then(reg => {
                     console.log('Service Worker registrado com sucesso:', reg);
                 })
@@ -186,7 +193,6 @@
             window.addEventListener('load', () => {
                 if (!deferredPrompt) {
                     installButton.style.display = "inline-block";
-                    installMessage.textContent = "Clique em 'Instalar Agora' para adicionar o Olíbano à sua tela inicial.";
                 }
             });
         }
