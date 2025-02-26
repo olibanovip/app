@@ -159,24 +159,48 @@
         if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
             alreadyInstalledMessage.style.display = "block";
         } else {
-            // Só ativa o listener se o evento for suportado
+            // Tenta disparar o prompt automaticamente ao carregar a página
             window.addEventListener('beforeinstallprompt', (event) => {
                 console.log('Evento beforeinstallprompt disparado');
                 event.preventDefault();
                 deferredPrompt = event;
-                installButton.style.display = "inline-block";
+
+                // Mostra o prompt automaticamente
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    installMessage.textContent = "Gostaríamos de instalar o aplicativo Olíbano na sua tela inicial. Confirme a solicitação.";
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        installButton.style.display = "none"; // Esconde o botão após o prompt
+                        if (choiceResult.outcome === 'accepted') {
+                            installMessage.textContent = "Instalação iniciada! Verifique sua tela inicial.";
+                        } else {
+                            installMessage.textContent = "Instalação cancelada. Clique em 'Instalar Agora' ou use o menu do navegador.";
+                            installButton.style.display = "inline-block"; // Mostra o botão se rejeitado
+                        }
+                        deferredPrompt = null;
+                    });
+                }
+            });
+
+            // Fallback: Mostra o botão se o evento não for disparado (ex.: primeira visita)
+            window.addEventListener('load', () => {
+                if (!deferredPrompt) {
+                    installButton.style.display = "inline-block";
+                    installMessage.textContent = "Clique em 'Instalar Agora' para adicionar o Olíbano à sua tela inicial.";
+                }
             });
         }
 
         installButton.addEventListener("click", () => {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
+                installMessage.textContent = "Confirmando instalação...";
                 deferredPrompt.userChoice.then((choiceResult) => {
                     installButton.style.display = "none";
                     if (choiceResult.outcome === 'accepted') {
                         installMessage.textContent = "Instalação iniciada! Verifique sua tela inicial.";
                     } else {
-                        installMessage.textContent = "Instale quando desejar!";
+                        installMessage.textContent = "Instalação cancelada. Tente novamente.";
                     }
                     deferredPrompt = null;
                 });
