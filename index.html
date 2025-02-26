@@ -13,10 +13,17 @@
                 .then(reg => console.log('Service Worker registrado!', reg))
                 .catch(err => console.error('Erro no Service Worker', err));
         }
+        
+        // Adicionar redirecionamento também no HTML para maior compatibilidade
+        if (window.matchMedia('(display-mode: standalone)').matches || 
+            window.navigator.standalone === true) {
+            window.location.href = "https://olibano.glide.page";
+        }
     </script>
 </head>
 <body>
     <h1>Bem-vindo ao Olíbano</h1>
     <p>Instale nosso aplicativo para uma melhor experiência.</p>
+    <p>Carregando...</p>
 </body>
 </html>
