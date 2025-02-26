@@ -1,7 +1,7 @@
 {
   "short_name": "Olíbano",
   "name": "Olíbano",
-  "description": "Aplicativo da Olíbano para autocuidado e bem-estar",
+  "description": "Aplicativo do Olíbano para autocuidado e bem-estar",
   "start_url": "/files/index.html",
   "scope": "/",
   "display": "fullscreen",
