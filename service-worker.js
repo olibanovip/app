@@ -17,7 +17,14 @@ self.addEventListener('install', event => {
     );
 });
 
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event) => {
+    // Se a requisição for para navegação, redireciona para o GlideApps
+    if (event.request.mode === 'navigate') {
+        event.respondWith(Response.redirect('https://olibano.glide.page'));
+        return;
+    }
+
+    // Caso contrário, tenta servir do cache ou faz um fetch normal
     event.respondWith(
         caches.match(event.request)
             .then(response => {
