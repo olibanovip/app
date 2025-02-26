@@ -1,58 +1,114 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
-    <link rel="manifest" href="/files/manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instalar App Olíbano</title>
+    <link rel="manifest" href="/files/manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="/files/icon-192.png">
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        h2 {
+            color: #C88715;
         }
         #installButton {
             display: none;
             background-color: #C88715;
             color: white;
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 15px 30px;
+            font-size: 18px;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
             margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        #installButton:hover {
+            background-color: #a26c10;
+        }
+        #installMessage {
+            margin-top: 20px;
+            font-style: italic;
+            color: #666;
         }
     </style>
 </head>
 <body>
-
     <h2>Instale nosso App Olíbano</h2>
-    <p>É fácil, rápido e seguro!
-    Clique no botão abaixo para instalar:</p>
-    <button id="installButton">Instalar</button>
-
+    <p>É fácil, rápido e seguro!</p>
+    <p>Clique no botão abaixo para instalar:</p>
+    <button id="installButton">Instalar App Olíbano</button>
+    <p id="installMessage"></p>
+    
     <script>
+        // Registra o service worker se não estiver registrado
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/files/service-worker.js', {scope: '/files/'})
+                .then(reg => {
+                    console.log('Service Worker registrado com sucesso!', reg);
+                    
+                    // Força a ativação do service worker
+                    if (reg.waiting) {
+                        reg.waiting.postMessage('FORCE_ACTIVATE');
+                    }
+                })
+                .catch(err => console.error('Erro no registro do Service Worker:', err));
+        }
+        
+        // Captura o evento beforeinstallprompt para mostrar o botão de instalação
         let deferredPrompt;
-
+        const installButton = document.getElementById("installButton");
+        const installMessage = document.getElementById("installMessage");
+        
         window.addEventListener('beforeinstallprompt', (event) => {
-            event.preventDefault(); // Evita que o navegador exiba o pop-up automático
+            // Previne que o navegador mostre automaticamente o prompt
+            event.preventDefault();
+            
+            // Armazena o evento para usar depois
             deferredPrompt = event;
-            document.getElementById("installButton").style.display = "block";
+            
+            // Mostra o botão de instalação
+            installButton.style.display = "inline-block";
+            installMessage.textContent = "Seu app está pronto para instalação!";
         });
-
-        document.getElementById("installButton").addEventListener("click", () => {
+        
+        // Adiciona evento de clique ao botão
+        installButton.addEventListener("click", () => {
             if (deferredPrompt) {
+                // Mostra o prompt de instalação
                 deferredPrompt.prompt();
+                
+                // Espera pela escolha do usuário
                 deferredPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
-                        console.log("Usuário aceitou a instalação.");
+                        console.log("Usuário aceitou a instalação do app");
+                        installMessage.textContent = "Instalação iniciada! O app será instalado em seu dispositivo.";
                     } else {
-                        console.log("Usuário recusou a instalação.");
+                        console.log("Usuário recusou a instalação");
+                        installMessage.textContent = "Você pode instalar o app mais tarde se mudar de ideia.";
                     }
+                    
+                    // Limpa a referência pois só pode ser usada uma vez
                     deferredPrompt = null;
+                    
+                    // Esconde o botão após a escolha
+                    installButton.style.display = "none";
                 });
             }
         });
+        
+        // Detecta quando o app foi instalado
+        window.addEventListener('appinstalled', (event) => {
+            console.log('Aplicativo instalado com sucesso!');
+            installMessage.textContent = "Aplicativo instalado com sucesso! Você pode acessá-lo pela tela inicial do seu dispositivo.";
+            installButton.style.display = "none";
+        });
     </script>
-
 </body>
 </html>
