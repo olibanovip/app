@@ -2,46 +2,18 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olíbano VIP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Olíbano</title>
     <link rel="manifest" href="/files/manifest.json">
     <link rel="icon" type="image/png" sizes="192x192" href="/files/icon-192.png">
     <meta name="theme-color" content="#000000">
-    <script>
-        // Redirecionamento imediato para a página desejada quando aberto como PWA
-        if (window.matchMedia('(display-mode: standalone)').matches || 
-            window.navigator.standalone === true) {
-            window.location.replace("https://olibano.glide.page");
-        }
-
-        // Registro do service worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/files/service-worker.js', {scope: '/files/'})
-                    .then(function(registration) {
-                        console.log('Service Worker registrado com sucesso:', registration.scope);
-                    })
-                    .catch(function(error) {
-                        console.log('Falha ao registrar o Service Worker:', error);
-                    });
-            });
-        }
-    </script>
+    
+    <!-- Restante do código... -->
 </head>
 <body>
-    <h1>Bem-vindo ao Olíbano</h1>
-    <p>Instale nosso aplicativo para uma melhor experiência.</p>
-    <p>Redirecionando para nosso app principal...</p>
-    
-    <!-- Redirecionamento por fallback -->
-    <script>
-        // Tenta redirecionar após um pequeno delay como fallback
-        setTimeout(function() {
-            if (window.matchMedia('(display-mode: standalone)').matches || 
-                window.navigator.standalone === true) {
-                window.location.href = "https://olibano.glide.page";
-            }
-        }, 1000);
-    </script>
+    <!-- Conteúdo... -->
 </body>
 </html>
