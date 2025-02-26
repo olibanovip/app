@@ -55,7 +55,7 @@
         }
 
         h1 {
-            font-size: 2.8rem; /* Aumentado para maior destaque */
+            font-size: 2.8rem;
             font-weight: 700;
             color: var(--ouro);
             margin-bottom: 10px;
@@ -75,7 +75,6 @@
         }
 
         #installButton {
-            display: none;
             background-color: var(--terracota);
             color: var(--branco);
             font-size: 1.2rem;
@@ -84,6 +83,7 @@
             border-radius: 25px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 10px;
         }
 
         #installButton:hover {
@@ -116,17 +116,17 @@
             color: var(--ouro);
         }
 
+        .install-instruction {
+            font-size: 0.9rem;
+            color: var(--oliva);
+            margin-top: 10px;
+        }
+
         .footer {
             margin-top: 30px;
             font-size: 0.8rem;
             color: var(--preto);
             opacity: 0.6;
-        }
-
-        .install-instruction {
-            font-size: 0.9rem; /* Estilo de rodapé para a instrução */
-            color: var(--oliva);
-            margin-top: 10px;
         }
     </style>
 </head>
@@ -134,7 +134,7 @@
     <div class="container">
         <img src="/files/icon-192.png" alt="Logo Olíbano" class="logo">
         <h1>Olíbano</h1>
-        <h2>Instale nosso aplicativo</h2>
+        <h2>Instalar nosso aplicativo</h2>
         <p>Uma experiência premium ao seu alcance.</p>
         <button id="installButton">Instalar Agora</button>
         <div id="installMessage"></div>
@@ -149,7 +149,7 @@
 
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/files/service-worker.js', { scope: '/files/' }) // Ajustado para '/files/'
+            navigator.serviceWorker.register('/files/service-worker.js', { scope: '/files/' })
                 .then(reg => {
                     console.log('Service Worker registrado com sucesso:', reg);
                 })
@@ -177,22 +177,13 @@
                     deferredPrompt.prompt();
                     installMessage.textContent = "Gostaríamos de instalar o aplicativo Olíbano na sua tela inicial. Confirme a solicitação.";
                     deferredPrompt.userChoice.then((choiceResult) => {
-                        installButton.style.display = "none"; // Esconde o botão após o prompt
                         if (choiceResult.outcome === 'accepted') {
                             installMessage.textContent = "Instalação iniciada! Verifique sua tela inicial.";
                         } else {
-                            installMessage.textContent = "Instalação cancelada. Clique em 'Instalar Agora' ou use o menu do navegador.";
-                            installButton.style.display = "inline-block"; // Mostra o botão se rejeitado
+                            installMessage.textContent = "";
                         }
                         deferredPrompt = null;
                     });
-                }
-            });
-
-            // Fallback: Mostra o botão se o evento não for disparado (ex.: primeira visita)
-            window.addEventListener('load', () => {
-                if (!deferredPrompt) {
-                    installButton.style.display = "inline-block";
                 }
             });
         }
@@ -202,7 +193,6 @@
                 deferredPrompt.prompt();
                 installMessage.textContent = "Confirmando instalação...";
                 deferredPrompt.userChoice.then((choiceResult) => {
-                    installButton.style.display = "none";
                     if (choiceResult.outcome === 'accepted') {
                         installMessage.textContent = "Instalação iniciada! Verifique sua tela inicial.";
                     } else {
