@@ -2,7 +2,7 @@
   "short_name": "Olíbano",
   "name": "Olíbano VIP",
   "description": "Este é o App da empresa Olíbano, aproveite!",
-  "start_url": "/files",
+  "start_url": "/files/index.html",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff",
@@ -32,8 +32,8 @@
       "purpose": "maskable"
     }
   ],
-  "scope": "/files",
-  "lang": "pt",
+  "scope": "/files/",
+  "lang": "pt-BR",
   "orientation": "portrait",
   "display_override": [
     "window-controls-overlay",
