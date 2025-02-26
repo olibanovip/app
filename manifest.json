@@ -4,9 +4,9 @@
   "description": "Este é o App da empresa Olíbano, aproveite!",
   "start_url": "/files/index.html",
   "scope": "/files/",
-  "display": "standalone",
+  "display": "fullscreen",
   "theme_color": "#354037",
-  "background_color": "#FFFFFF",
+  "background_color": "#354037",
   "icons": [
     {
       "src": "/files/icon-192.png",
@@ -24,8 +24,8 @@
   "lang": "pt-BR",
   "orientation": "portrait",
   "display_override": [
-    "standalone",
-    "fullscreen"
+    "fullscreen",
+    "standalone"
   ],
   "prefer_related_applications": false
 }
