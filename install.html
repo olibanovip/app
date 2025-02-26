@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="theme-color" content="#354037">
     <title>Olíbano - Instalar Aplicativo</title>
@@ -55,21 +56,20 @@
         }
 
         h1 {
-            font-size: 2.8rem;
+            font-size: 4rem;
             font-weight: 700;
             color: var(--ouro);
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--oliva);
             margin-bottom: 10px;
         }
 
-        h2 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: var(--verde-escuro);
-            margin-bottom: 15px;
-        }
-
-        p {
-            font-size: 1.1rem;
+        .install-instruction {
+            font-size: 0.8rem;
             color: var(--oliva);
             margin-bottom: 20px;
         }
@@ -83,7 +83,6 @@
             border-radius: 25px;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
-            margin-top: 10px;
         }
 
         #installButton:hover {
@@ -98,34 +97,10 @@
             min-height: 40px;
         }
 
-        .already-installed {
-            display: none;
-            background-color: rgba(69, 68, 59, 0.05);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-        }
-
-        .already-installed a {
-            color: var(--terracota);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .already-installed a:hover {
-            color: var(--ouro);
-        }
-
-        .install-instruction {
-            font-size: 0.9rem;
-            color: var(--oliva);
-            margin-top: 10px;
-        }
-
         .footer {
             margin-top: 30px;
             font-size: 0.8rem;
-            color: var(--preto);
+            color: var(--verde-escuro);
             opacity: 0.6;
         }
     </style>
@@ -134,20 +109,15 @@
     <div class="container">
         <img src="/files/icon-192.png" alt="Logo Olíbano" class="logo">
         <h1>Olíbano</h1>
-        <h2>Instalar nosso aplicativo</h2>
-        <p>Uma experiência premium ao seu alcance.</p>
+        <p class="subtitle">Uma experiência premium ao seu alcance</p>
+        <p class="install-instruction">Clique no botão abaixo para instalar o nosso aplicativo</p>
         <button id="installButton">Instalar Agora</button>
         <div id="installMessage"></div>
-        <div class="already-installed" id="alreadyInstalledMessage">
-            <p>O aplicativo já está instalado.</p>
-            <p>Encontre-o na sua tela inicial.</p>
-            <a href="#" id="openAppLink">Abrir Olíbano</a>
-        </div>
-        <div class="install-instruction">Clique em 'Instalar Agora' para adicionar o Olíbano à sua tela inicial.</div>
     </div>
     <div class="footer">© 2025 Olíbano. Todos os direitos reservados.</div>
 
     <script>
+        // Registro do Service Worker com escopo ajustado
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/files/service-worker.js', { scope: '/files/' })
                 .then(reg => {
@@ -156,61 +126,37 @@
                 .catch(err => console.error('Erro ao registrar Service Worker:', err.message));
         }
 
+        // Variáveis para o evento de instalação
         let deferredPrompt;
         const installButton = document.getElementById("installButton");
         const installMessage = document.getElementById("installMessage");
-        const alreadyInstalledMessage = document.getElementById("alreadyInstalledMessage");
-        const openAppLink = document.getElementById("openAppLink");
 
-        // Verifica se o app já está instalado
-        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
-            alreadyInstalledMessage.style.display = "block";
-        } else {
-            // Tenta disparar o prompt automaticamente ao carregar a página
-            window.addEventListener('beforeinstallprompt', (event) => {
-                console.log('Evento beforeinstallprompt disparado');
-                event.preventDefault();
-                deferredPrompt = event;
+        // Captura o evento beforeinstallprompt
+        window.addEventListener('beforeinstallprompt', (event) => {
+            console.log('Evento beforeinstallprompt disparado');
+            event.preventDefault(); // Impede o prompt automático
+            deferredPrompt = event; // Armazena o evento
+            installButton.style.display = 'inline-block'; // Mostra o botão
+        });
 
-                // Mostra o prompt automaticamente
-                if (deferredPrompt) {
-                    deferredPrompt.prompt();
-                    installMessage.textContent = "Gostaríamos de instalar o aplicativo Olíbano na sua tela inicial. Confirme a solicitação.";
-                    deferredPrompt.userChoice.then((choiceResult) => {
-                        if (choiceResult.outcome === 'accepted') {
-                            installMessage.textContent = "Instalação iniciada! Verifique sua tela inicial.";
-                        } else {
-                            installMessage.textContent = "";
-                        }
-                        deferredPrompt = null;
-                    });
-                }
-            });
-        }
-
-        installButton.addEventListener("click", () => {
+        // Ação ao clicar no botão
+        installButton.addEventListener('click', () => {
             if (deferredPrompt) {
-                deferredPrompt.prompt();
-                installMessage.textContent = "Confirmando instalação...";
+                deferredPrompt.prompt(); // Mostra o prompt de instalação
                 deferredPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
-                        installMessage.textContent = "Instalação iniciada! Verifique sua tela inicial.";
+                        installMessage.textContent = 'Instalação iniciada! Verifique sua tela inicial.';
                     } else {
-                        installMessage.textContent = "Instalação cancelada. Tente novamente.";
+                        installMessage.textContent = 'Instalação cancelada. Tente novamente quando quiser.';
                     }
-                    deferredPrompt = null;
+                    deferredPrompt = null; // Limpa a variável após uso
                 });
             }
         });
 
+        // Confirmação de instalação concluída
         window.addEventListener('appinstalled', () => {
-            installMessage.textContent = "Instalado com sucesso! Acesse pela tela inicial.";
-            setTimeout(() => alreadyInstalledMessage.style.display = "block", 2000);
-        });
-
-        openAppLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.location.href = "https://airgo.bio/olibano";
+            installMessage.textContent = 'Instalado com sucesso! Acesse pela tela inicial.';
         });
     </script>
 </body>
