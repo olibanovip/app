@@ -1,6 +1,7 @@
 const CACHE_NAME = 'olibano-v1';
 const urlsToCache = [
     '/',
+    '/files',
     '/files/index.html',
     '/files/manifest.json',
     '/files/icon-192.png'
