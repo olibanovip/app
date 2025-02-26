@@ -1,7 +1,7 @@
 {
   "short_name": "Olíbano",
   "name": "Olíbano",
-  "description": "Este é o App da empresa Olíbano, aproveite!",
+  "description": "Aplicativo da Olíbano para autocuidado e bem-estar",
   "start_url": "/files/index.html",
   "scope": "/",
   "display": "fullscreen",
