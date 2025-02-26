@@ -3,7 +3,7 @@
   "name": "Olíbano",
   "description": "Este é o App da empresa Olíbano, aproveite!",
   "start_url": "/files/index.html",
-  "scope": "/files/",
+  "scope": "/",
   "display": "fullscreen",
   "theme_color": "#354037",
   "background_color": "#354037",
