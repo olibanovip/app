@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes"> <!-- Meta tag atualizada -->
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="theme-color" content="#354037">
     <title>Olíbano - Instalar Aplicativo</title>
@@ -20,13 +20,7 @@
             --bege-suave: #F5F2E9;
             --terracota-claro: #D4946E;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Playfair Display', serif;
             background-color: var(--bege-suave);
@@ -39,7 +33,6 @@
             padding: 20px;
             line-height: 1.6;
         }
-
         .container {
             max-width: 500px;
             width: 100%;
@@ -49,31 +42,10 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             text-align: center;
         }
-
-        .logo {
-            width: 120px;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            color: var(--ouro);
-            margin-bottom: 5px;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--oliva);
-            margin-bottom: 10px;
-        }
-
-        .install-instruction {
-            font-size: 0.8rem;
-            color: var(--oliva);
-            margin-bottom: 20px;
-        }
-
+        .logo { width: 120px; margin-bottom: 20px; }
+        h1 { font-size: 4.5rem; font-weight: 700; color: var(--ouro); margin-bottom: 10px; }
+        .subtitle { font-size: 1.2rem; color: var(--oliva); margin-bottom: 15px; }
+        .install-instruction { font-size: 0.75rem; color: var(--oliva); margin-bottom: 20px; }
         #installButton {
             background-color: var(--terracota);
             color: var(--branco);
@@ -84,25 +56,12 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
-
         #installButton:hover {
             background-color: var(--terracota-claro);
             transform: translateY(-2px);
         }
-
-        #installMessage {
-            margin-top: 15px;
-            font-size: 1rem;
-            color: var(--verde-escuro);
-            min-height: 40px;
-        }
-
-        .footer {
-            margin-top: 30px;
-            font-size: 0.8rem;
-            color: var(--verde-escuro);
-            opacity: 0.6;
-        }
+        #installMessage { margin-top: 15px; font-size: 1rem; color: var(--verde-escuro); min-height: 40px; }
+        .footer { margin-top: 30px; font-size: 0.8rem; color: var(--verde-escuro); opacity: 0.6; }
     </style>
 </head>
 <body>
@@ -117,12 +76,10 @@
     <div class="footer">© 2025 Olíbano. Todos os direitos reservados.</div>
 
     <script>
-        // Registro do Service Worker com escopo ajustado
+        // Registro do Service Worker com escopo corrigido
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/files/service-worker.js', { scope: '/files/' })
-                .then(reg => {
-                    console.log('Service Worker registrado com sucesso:', reg);
-                })
+                .then(reg => console.log('Service Worker registrado com sucesso:', reg))
                 .catch(err => console.error('Erro ao registrar Service Worker:', err.message));
         }
 
@@ -136,7 +93,6 @@
             console.log('Evento beforeinstallprompt disparado');
             event.preventDefault(); // Impede o prompt automático
             deferredPrompt = event; // Armazena o evento
-            installButton.style.display = 'inline-block'; // Mostra o botão
         });
 
         // Ação ao clicar no botão
@@ -151,6 +107,8 @@
                     }
                     deferredPrompt = null; // Limpa a variável após uso
                 });
+            } else {
+                installMessage.textContent = 'Não é possível instalar no momento. Tente novamente mais tarde.';
             }
         });
 
