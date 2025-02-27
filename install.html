@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-pwa-install>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Olíbano">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#354037">
-    <title>Olíbano - Instalar Aplicativo</title>
+    <title>Instalar Olíbano</title>
     <link rel="manifest" href="/files/manifest.json">
     <link rel="icon" type="image/png" sizes="192x192" href="/files/icon-192.png">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <style>
         :root {
             --ouro: #C88715;
@@ -17,105 +20,212 @@
             --oliva: #69683B;
             --verde-escuro: #354037;
             --branco: #FFFFFF;
-            --bege-suave: #F5F2E9;
-            --terracota-claro: #D4946E;
+            --degrade-ouro: linear-gradient(145deg, #C88715 0%, #AC4315 100%);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Playfair Display', serif;
-            background-color: var(--bege-suave);
-            color: var(--verde-escuro);
+            font-family: 'Raleway', sans-serif;
+            background: var(--degrade-ouro);
+            color: var(--branco);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            line-height: 1.6;
+            -webkit-tap-highlight-color: transparent;
         }
-        .container {
-            max-width: 500px;
+
+        .install-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 30px;
+            padding: 40px;
             width: 100%;
-            background-color: var(--branco);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            max-width: 500px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container {
+            position: relative;
+            margin: -100px auto 20px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: var(--branco);
+            box-shadow: 0 8px 25px rgba(172, 67, 21, 0.2);
+        }
+
+        .logo {
+            width: 100%;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
             text-align: center;
+            margin-bottom: 10px;
+            color: var(--verde-escuro);
         }
-        .logo { width: 120px; margin-bottom: 20px; }
-        h1 { font-size: 4.5rem; font-weight: 700; color: var(--ouro); margin-bottom: 10px; }
-        .subtitle { font-size: 1.2rem; color: var(--oliva); margin-bottom: 15px; }
-        .install-instruction { font-size: 0.75rem; color: var(--oliva); margin-bottom: 20px; }
+
+        .subtitle {
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--oliva);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
         #installButton {
-            background-color: var(--terracota);
+            background: var(--terracota);
             color: var(--branco);
-            font-size: 1.2rem;
-            padding: 12px 30px;
+            font-size: 1.1rem;
+            padding: 18px 45px;
             border: none;
-            border-radius: 25px;
+            border-radius: 30px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: block;
+            width: 100%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
+
+        #installButton::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: all 0.6s ease;
+        }
+
         #installButton:hover {
-            background-color: var(--terracota-claro);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(172, 67, 21, 0.3);
         }
-        #installMessage { margin-top: 15px; font-size: 1rem; color: var(--verde-escuro); min-height: 40px; }
-        .footer { margin-top: 30px; font-size: 0.8rem; color: var(--verde-escuro); opacity: 0.6; }
+
+        #installButton:hover::after {
+            left: 100%;
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            color: var(--verde-escuro);
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            color: var(--branco);
+        }
+
+        @media (max-width: 480px) {
+            .install-card {
+                padding: 25px;
+                border-radius: 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="/files/icon-192.png" alt="Logo Olíbano" class="logo">
+    <div class="install-card">
+        <div class="logo-container">
+            <img src="/files/icon-192.png" alt="Logo Olíbano" class="logo">
+        </div>
         <h1>Olíbano</h1>
-        <p class="subtitle">Uma experiência premium ao seu alcance</p>
-        <p class="install-instruction">Clique no botão abaixo para instalar o nosso aplicativo</p>
-        <button id="installButton">Instalar Agora</button>
-        <div id="installMessage"></div>
+        <p class="subtitle">Sua Jornada Premium para o Bem-Estar</p>
+        
+        <button id="installButton">
+            <span class="button-text">Instalar Aplicativo</span>
+        </button>
     </div>
-    <div class="footer">© 2025 Olíbano. Todos os direitos reservados.</div>
+    <p class="footer">© 2025 Olíbano. Todos os direitos reservados.</p>
 
     <script>
-        // Registro do Service Worker com escopo corrigido
+        // Controle de Instalação Avançado
+        let deferredPrompt;
+        const installButton = document.getElementById('installButton');
+        
+        // Registro do Service Worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/files/service-worker.js', { scope: '/files/' })
-                .then(reg => console.log('Service Worker registrado com sucesso:', reg))
-                .catch(err => console.error('Erro ao registrar Service Worker:', err.message));
+                .then(reg => console.log('SW registrado:', reg))
+                .catch(err => console.error('Erro SW:', err));
         }
 
-        // Variáveis para o evento de instalação
-        let deferredPrompt;
-        const installButton = document.getElementById("installButton");
-        const installMessage = document.getElementById("installMessage");
-
-        // Captura o evento beforeinstallprompt
-        window.addEventListener('beforeinstallprompt', (event) => {
-            console.log('Evento beforeinstallprompt disparado');
-            event.preventDefault(); // Impede o prompt automático
-            deferredPrompt = event; // Armazena o evento
-            installMessage.textContent = 'Clique no botão "Instalar Agora" para adicionar o aplicativo à sua tela inicial.';
+        // Gerenciamento de Instalação
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Trigger automático com fallback
+            setTimeout(() => {
+                if(deferredPrompt) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then(choice => {
+                        if(choice.outcome === 'accepted') {
+                            localStorage.setItem('pwaInstalled', 'true');
+                            window.location.href = 'https://airgo.bio/olibano';
+                        }
+                    });
+                }
+            }, 1500);
         });
 
-        // Ação ao clicar no botão
-        installButton.addEventListener('click', () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt(); // Mostra o prompt de instalação
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        installMessage.textContent = 'Instalação iniciada! Verifique sua tela inicial.';
-                    } else {
-                        installMessage.textContent = 'Instalação cancelada. Tente novamente quando quiser.';
-                    }
-                    deferredPrompt = null; // Limpa a variável após uso
-                });
-            } else {
-                installMessage.textContent = 'O prompt de instalação não está disponível. Certifique-se de que o site atende aos requisitos de PWA.';
-            }
-        });
-
-        // Confirmação de instalação concluída
+        // Pós-Instalação
         window.addEventListener('appinstalled', () => {
-            installMessage.textContent = 'Instalado com sucesso! Acesse pela tela inicial.';
+            navigator.sendBeacon('/files/analytics', 'install_success');
+            window.location.href = 'https://airgo.bio/olibano';
+        });
+
+        // Animação de Interface
+        anime({
+            targets: '.install-card',
+            opacity: [0, 1],
+            translateY: [50, 0],
+            duration: 800,
+            easing: 'easeOutExpo'
+        });
+
+        installButton.addEventListener('click', () => {
+            if(deferredPrompt) {
+                deferredPrompt.prompt();
+            } else {
+                window.location.href = 'https://airgo.bio/olibano';
+            }
         });
     </script>
 </body>
