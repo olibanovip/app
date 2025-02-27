@@ -1,8 +1,80 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="theme-color" content="#354037">
+    <title>Olíbano - Instalar Aplicativo</title>
+    <link rel="manifest" href="/files/manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="/files/icon-192.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ouro: #C88715;
+            --terracota: #AC4315;
+            --oliva: #69683B;
+            --verde-escuro: #354037;
+            --branco: #FFFFFF;
+            --bege-suave: #F5F2E9;
+            --terracota-claro: #D4946E;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: var(--bege-suave);
+            color: var(--verde-escuro);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background-color: var(--branco);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        .logo { width: 120px; margin-bottom: 20px; }
+        h1 { font-size: 4.5rem; font-weight: 700; color: var(--ouro); margin-bottom: 10px; }
+        .subtitle { font-size: 1.2rem; color: var(--oliva); margin-bottom: 15px; }
+        .install-instruction { font-size: 0.75rem; color: var(--oliva); margin-bottom: 20px; }
+        #installButton {
+            background-color: var(--terracota);
+            color: var(--branco);
+            font-size: 1.2rem;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        #installButton:hover {
+            background-color: var(--terracota-claro);
+            transform: translateY(-2px);
+        }
+        #installMessage { margin-top: 15px; font-size: 1rem; color: var(--verde-escuro); min-height: 40px; }
+        .footer { margin-top: 30px; font-size: 0.8rem; color: var(--verde-escuro); opacity: 0.6; }
+    </style>
+</head>
 <body>
+    <div class="container">
+        <img src="/files/icon-192.png" alt="Logo Olíbano" class="logo">
+        <h1>Olíbano</h1>
+        <p class="subtitle">Uma experiência premium ao seu alcance</p>
+        <p class="install-instruction">Clique no botão abaixo para instalar o nosso aplicativo</p>
+        <button id="installButton">Instalar Agora</button>
+        <div id="installMessage"></div>
+    </div>
+    <div class="footer">© 2025 Olíbano. Todos os direitos reservados.</div>
+
     <script>
         // Registro do Service Worker com escopo corrigido
         if ('serviceWorker' in navigator) {
