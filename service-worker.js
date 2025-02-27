@@ -6,16 +6,13 @@ const urlsToCache = [
   '/files/manifest.json',
   '/files/icon-192.png',
   '/files/icon-512.png',
-  'https://airgo.bio/olibano' // Cache da URL final
+  'https://airgo.bio/olibano'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Cache aberto');
-        return cache.addAll(urlsToCache);
-      })
+      .then(cache => cache.addAll(urlsToCache))
       .then(() => self.skipWaiting())
   );
 });
