@@ -20,15 +20,3 @@ self.addEventListener('fetch', event => {
     console.log('Fetch interceptado:', event.request.url);
     event.respondWith(
         caches.match(event.request)
-            .then(response => response || fetch(event.request))
-            .catch(() => {
-                console.error('Erro ao buscar:', event.request.url);
-                return caches.match('/files/index.html');
-            })
-    );
-});
-
-self.addEventListener('activate', event => {
-    console.log('Service Worker ativando...');
-    event.waitUntil(self.clients.claim());
-});
