@@ -1,12 +1,10 @@
 {
-  "name": "Olibano",
-  "short_name": "Olibano",
-  "id": "/app/",
+  "name": "Olíbano",
+  "short_name": "Olíbano",
   "start_url": "/app/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
-  "description": "Aplicativo Olibano para uma experiência otimizada",
+  "theme_color": "#354037",
+  "background_color": "#FFFFFF",
   "icons": [
     {
       "src": "/app/icon-192.png",
